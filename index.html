@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IMAGE GALLERY</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="full-img" id="fullimgbox">
+            <img src="imagess/img1.jpg" id="fullimg">
+            <span onclick="closeFullimg()"> X </span>
+        </div>
+            
+
+         <div class="img-gallery">
+            
+            <div class="img-container">
+  <img src="imagess/img1.jpg" onclick="openFullimg(this.src)">
+  <button class="like-btn" onclick="toggleLike(this)"></button>
+</div>
+
+             
+            <div class="img-container">
+  <img src="imagess/img2.jpg" onclick="openFullimg(this.src)">
+  <button class="like-btn" onclick="toggleLike(this)"></button>
+</div>
+
+            
+            <div class="img-container">
+  <img src="imagess/img3.jpg" onclick="openFullimg(this.src)">
+  <button class="like-btn" onclick="toggleLike(this)"></button>
+</div>
+
+            
+            <div class="img-container">
+  <img src="imagess/img4.jpg" onclick="openFullimg(this.src)">
+  <button class="like-btn" onclick="toggleLike(this)"></button>
+</div>
+
+            
+            <div class="img-container">
+  <img src="imagess/img5.jpg" onclick="openFullimg(this.src)">
+  <button class="like-btn" onclick="toggleLike(this)"></button>
+</div>
+
+            
+            <div class="img-container">
+  <img src="imagess/img6.jpg" onclick="openFullimg(this.src)">
+  <button class="like-btn" onclick="toggleLike(this)"></button>
+</div>
+
+           
+         <div class="img-container">
+  <img src="imagess/img7.jpg" onclick="openFullimg(this.src)">
+  <button class="like-btn" onclick="toggleLike(this)"></button>
+</div>
+
+            
+            <div class="img-container">
+  <img src="imagess/img8.jpg" onclick="openFullimg(this.src)">
+  <button class="like-btn" onclick="toggleLike(this)"></button>
+</div>
+
+         </div>
+<input type="file" id="uploadImage" accept="image/*" onchange="addImage(event)">
+
+
+<script>
+
+    var fullimgbox = document.getElementById("fullimgbox");
+    var fullimg = document.getElementById("fullimg");
+
+    function openFullimg(imgs){
+        fullimgbox.style.display = "flex";
+        fullimg.src = imgs;
+    }
+
+    function closeFullimg(){
+        fullimgbox.style.display = "none";
+    }
+    
+function toggleLike(btn) {
+  btn.classList.toggle('liked');
+}
+function addImage(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const imgContainer = document.createElement("div");
+      imgContainer.className = "img-container";
+
+      const newImg = document.createElement("img");
+      newImg.src = e.target.result;
+      newImg.setAttribute("onclick", "openFullimg(this.src)");
+
+      const heart = document.createElement("button");
+      heart.innerHTML = "❤️";
+      heart.className = "like-btn";
+      heart.setAttribute("onclick", "toggleLike(this)");
+
+      imgContainer.appendChild(newImg);
+      imgContainer.appendChild(heart);
+      document.querySelector(".img-gallery").appendChild(imgContainer);
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+
+
+</script>
+
+
+    </body>
+</html>
